@@ -10,7 +10,7 @@
       your order id is: <%= @order.id %>.<br>
     </p>
     <p> Your order details are: <% @order.line_items.each do |line_item| %>
-      <%= line_item.product.name %>, Quantity: <%= line_item.quantity %>, Cost: <%= number_to_currency(line_item.total_price_cents / 100.00) %>
+      <%= line_item.product.name %>, Quantity: <%= line_item.quantity %>, Cost: <%= number_to_currency(line_item.total_price_cents / 100.00) %><br>
       <% end %>
     <p>
       The total cost was <%= number_to_currency(@order.total_cents / 100.00) %>.
