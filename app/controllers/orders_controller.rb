@@ -8,12 +8,22 @@ class OrdersController < ApplicationController
     charge = perform_stripe_charge
     order  = create_order(charge)
 
-    if order.valid?
-      empty_cart!
-      redirect_to order, notice: 'Your Order has been placed.'
-    else
-      redirect_to cart_path, error: order.errors.full_messages.first
-    end
+    # respond_to do |format|
+      if order.valid?
+        # Tell the UserMailer to send a welcome email after save
+        # @user = User.find_by_email(session[:user_id])
+        # UserMailer.jungle_receipt_email(@user).deliver_now
+
+        # format.html { redirect_to(@user, notice: 'User was successfully created.') }
+        # format.json { render json: @user, status: :created, location: @user }
+        empty_cart!
+        redirect_to order, notice: 'Your Order has been placed.'
+      else
+        # format.html { render action: 'new' }
+        # format.json { render json: @user.errors, status: :unprocessable_entity }
+        redirect_to cart_path, error: order.errors.full_messages.first
+      end
+    # end
 
   rescue Stripe::CardError => e
     redirect_to cart_path, error: e.message
