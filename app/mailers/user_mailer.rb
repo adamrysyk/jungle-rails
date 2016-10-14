@@ -1,9 +1,8 @@
 class UserMailer < ApplicationMailer
 
-   def jungle_receipt_email(user)
-    @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Jungle Receipt')
+   def jungle_receipt_email(order)
+    @order = order
+    mail(to: order.email, subject: "Order confirmation for order #:#{order.id}")
   end
 
 end

@@ -1,6 +1,6 @@
 <article class="product">
   <header>
-  <% if product.quantity == 0 %>
+  <% if product.quantity <= 0 %>
     <div class="sold-out">SOLD OUT</div>
   <% end %>
     <%= link_to product do %>

@@ -1,9 +1,16 @@
-Welcome to example.com, <%= @user.name %>
+Welcome to Jungle!
 ===============================================
 
-You have successfully signed up to example.com,
-your username is: <%= @user.login %>.
+You have successfully made an order on Jungle,
+your order id is: <%= @order.id %>.
 
-To login to the site, just follow this link: <%= @url %>.
 
-Thanks for joining and have a great day!
+Your order details are: <% @order.line_items.each do |line_item| %>
+
+<%= line_item.product.name %>, Quantity: <%= line_item.quantity %>, Cost: <%= number_to_currency(line_item.total_price_cents / 100.00) %>
+<% end %>
+
+The total cost was <%= number_to_currency(@order.total_cents / 100.00) %>
+
+
+Thanks for purchase and have a great day!

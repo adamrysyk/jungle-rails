@@ -4,14 +4,17 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @user.name %></h1>
+    <h1>Welcome to Jungle!</h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @user.login %>.<br>
+      You have successfully made an order on Jungle,
+      your order id is: <%= @order.id %>.<br>
     </p>
+    <p> Your order details are: <% @order.line_items.each do |line_item| %>
+      <%= line_item.product.name %>, Quantity: <%= line_item.quantity %>, Cost: <%= number_to_currency(line_item.total_price_cents / 100.00) %>
+      <% end %>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      The total cost was <%= number_to_currency(@order.total_cents / 100.00) %>.
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>Thanks for purchase and have a great day!</p>
   </body>
 </html>

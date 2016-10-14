@@ -14,10 +14,12 @@ class OrdersController < ApplicationController
         # @user = User.find_by_email(session[:user_id])
         # UserMailer.jungle_receipt_email(@user).deliver_now
 
+
         # format.html { redirect_to(@user, notice: 'User was successfully created.') }
         # format.json { render json: @user, status: :created, location: @user }
         empty_cart!
         redirect_to order, notice: 'Your Order has been placed.'
+        UserMailer.jungle_receipt_email(order).deliver_now
       else
         # format.html { render action: 'new' }
         # format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -63,6 +65,9 @@ class OrdersController < ApplicationController
       end
     end
     order.save!
+
+
+
     order
   end
 
