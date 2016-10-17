@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014175807) do
+ActiveRecord::Schema.define(version: 20161017182129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20161014175807) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "items", primary_key: "items_id", force: :cascade do |t|
+    t.integer "list_id"
+    t.text    "list_kind"
+    t.text    "items"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -34,6 +40,11 @@ ActiveRecord::Schema.define(version: 20161014175807) do
 
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
+
+  create_table "lists", primary_key: "list_id", force: :cascade do |t|
+    t.integer "user_id"
+    t.text    "list_kind"
+  end
 
   create_table "orders", force: :cascade do |t|
     t.integer  "total_cents"
@@ -71,6 +82,11 @@ ActiveRecord::Schema.define(version: 20161014175807) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "widgets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "line_items", "orders"
