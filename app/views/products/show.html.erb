@@ -26,17 +26,19 @@
       </div>
     </div>
 
-    <div>
-      <div>Leave a review!</div>
-      <%= form_for @review, url: product_reviews_path(@product) do |review| %>
-        <%= review.label :rating %>
-        <%= review.select :rating, [1, 2, 3, 4, 5] %><br>
-        <%= review.label :description %><br>
-        <%= review.text_area :description %><br>
-        <%= review.submit %>
-        <br><br>
-      <% end %>
-    </div>
+    <% if current_user %>
+      <div>
+        <br><div><b>Leave a review!</b></div>
+        <%= form_for @review, url: product_reviews_path(@product) do |review| %>
+          <%= review.label :rating %>
+          <%= review.select :rating, [1, 2, 3, 4, 5] %><br>
+          <%= review.label :description %><br>
+          <%= review.text_area :description %><br>
+          <%= review.submit %>
+          <br><br>
+        <% end %>
+      </div>
+    <% end %>
 
 
 
