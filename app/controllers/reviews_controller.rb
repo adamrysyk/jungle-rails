@@ -6,9 +6,9 @@ class ReviewsController < ApplicationController
    @product = Product.find params[:product_id]
    @review = @product.reviews.new(review_params)
    if @review.save
-     redirect_to :back, notice: 'Review created!'
+     redirect_to :back
    else
-     redirect_to [:login]
+     redirect_to :back
    end
  end
 
@@ -17,5 +17,11 @@ class ReviewsController < ApplicationController
    new_params[:user_id] = current_user.id
    return new_params
  end
+
+ def destroy
+    @review = Review.find params[:id]
+    @review.destroy
+    redirect_to :back
+  end
 
 end

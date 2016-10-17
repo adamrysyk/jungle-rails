@@ -27,25 +27,27 @@
     </div>
 
     <% if current_user %>
-      <div>
-        <br><div><b>Leave a review!</b></div>
+      <div class="review-form">
+        <br><div class="review-head"><b>Leave a review!</b></div>
         <%= form_for @review, url: product_reviews_path(@product) do |review| %>
-          <%= review.label :rating %>
+          <%= review.label :rating %>:
           <%= review.select :rating, [1, 2, 3, 4, 5] %><br>
-          <%= review.label :description %><br>
-          <%= review.text_area :description %><br>
+          <%= review.label :description %>:<br>
+          <div class="review-text-area"><%= review.text_area :description %></div><br>
           <%= review.submit %>
           <br><br>
         <% end %>
       </div>
     <% end %>
 
-
-
   </article>
-  <div>
+  <div class="review-list">
     <% @product.reviews.reverse.each do |review| %>
       <%= render partial: 'review', locals: { review: review }%>
+
+      <% if review.user.id == current_user.id %>
+        <div class="delete-review"><%= link_to fa_icon('trash'), review_path(review), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %></div>
+      <% end %>
     <% end %>
   </div>
 

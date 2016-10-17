@@ -85,4 +85,46 @@ main section.products-show {
   }
 }
 
+.review-form {
+
+  .review-head {
+    font-size: 30px;
+  }
+  #review_description {
+    width: 30%;
+    height: 100px;
+    outline: none;
+    resize: none;
+  }
+  label {
+    font-size: 20px;
+  }
+
+}
+
+.review-list {
+  font-size: 16px;
+  width: 40%;
+  margin: 0px;
+
+  .review-details {
+    margin: 20px 0px;
+    width: 100%;
+    border-bottom: 2px solid #000000;
+
+    .review-desc {
+      width: 80%;
+    }
+
+  }
+
+  .delete-review {
+    position: relative;
+    bottom: 60px;
+    float: right;
+    padding-left: 50px;
+    margin: 0px;
+  }
+}
+
 
