@@ -26,6 +26,26 @@
       </div>
     </div>
 
+    <div>
+      <div>Leave a review!</div>
+      <%= form_for @review, url: product_reviews_path(@product) do |review| %>
+        <%= review.label :rating %>
+        <%= review.select :rating, [1, 2, 3, 4, 5] %><br>
+        <%= review.label :description %><br>
+        <%= review.text_area :description %><br>
+        <%= review.submit %>
+        <br><br>
+      <% end %>
+    </div>
+
+
+
   </article>
+  <div>
+    <% @product.reviews.reverse.each do |review| %>
+      <%= render partial: 'review', locals: { review: review }%>
+    <% end %>
+  </div>
+
 
 </section>

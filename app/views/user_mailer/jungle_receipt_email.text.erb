@@ -14,3 +14,5 @@ The total cost was <%= number_to_currency(@order.total_cents / 100.00) %>
 
 
 Thanks for purchase and have a great day!
+
+bin/rails generate model Review product_id:integer user_id:integer description:text rating:integer
