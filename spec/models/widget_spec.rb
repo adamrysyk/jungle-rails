@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe '#id' do
+RSpec.describe '#id' do
   it 'should not exist for new records' do
     @widget = Widget.new
     expect(@widget.id).to be_nil

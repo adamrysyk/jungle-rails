@@ -45,6 +45,7 @@ group :development, :test do
   gem 'byebug'
   gem 'quiet_assets'
   gem 'dotenv-rails'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
